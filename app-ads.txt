@@ -1,1 +1,2 @@
 # app-ads.txt
+facebook.com, 1000001, RESELLER, c3e20eee3f780d68
