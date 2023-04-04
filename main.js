@@ -909,6 +909,52 @@ Play State
     window.addEventListener( 'resize', _this.resize, false );
   };
 
+  (function () {
+    var startX, startY, endX, endY;
+
+    document.addEventListener('touchstart', function(event) {
+      startX = event.touches[0].pageX;
+      startY = event.touches[0].pageY;
+    });
+    
+    document.addEventListener('touchend', function(event) {
+      endX = event.changedTouches[0].pageX;
+      endY = event.changedTouches[0].pageY;
+      var _this = g.currentState();
+    
+      var direction = getDirection(startX, startY, endX, endY);
+    
+      switch (direction) {
+        case "up":
+          _this.upOn();
+          break;
+        case "down":
+          _this.downOn();
+          break;
+        case "left":
+          _this.leftOn();
+          break;
+        case "right":
+          _this.rightOn();
+          break;
+      }
+    });
+    
+    function getDirection(startX, startY, endX, endY) {
+      var dx = endX - startX;
+      var dy = endY - startY;
+      var direction = '';
+    
+      if (Math.abs(dx) > Math.abs(dy)) {
+        direction = (dx > 0) ? "right" : "left";
+      } else {
+        direction = (dy > 0) ? "down" : "up";
+      }
+    
+      return direction;
+    }
+    })();
+
   StatePlay.prototype.step = function() {
     this.boardTiles.each( 'update' );
     this.boardTiles.each( 'render' );
