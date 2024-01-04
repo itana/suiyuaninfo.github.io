@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>萌玩</title>
     <style>
         body {
@@ -49,6 +50,19 @@
             bottom: 0;
             width: 100%;
             font-size: 14px;
+        }
+        /* 媒体查询，针对移动端屏幕 */
+        @media screen and (max-width: 600px) {
+            .app-icon img {
+                width: 100px; /* 在小屏幕上缩小图标尺寸 */
+            }
+            .download-links a {
+                padding: 8px 15px; /* 调整按钮大小以适应小屏幕 */
+            }
+            .footer {
+                padding: 15px 0;
+                font-size: 12px;
+            }
         }
 
     </style>
