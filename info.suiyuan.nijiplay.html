@@ -51,6 +51,73 @@
             width: 100%;
             font-size: 14px;
         }
+        .tags {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+        .tags li {
+            display: inline-block;
+            background-color: #FFA07A; /* 调整tag颜色 */
+            color: white;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .wechat_tips{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: rgba(44,34,39,0.9);
+            padding:20px 50px 20px 30px;
+            min-height: 50px;
+            color: #fff;
+            display: none;
+        }
+        .wechat_tips .arrow{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+        }
+        .bounceInDown {
+            -webkit-animation-name: bounceInDown;
+            -webkit-animation: bounceInDown 0.6s forwards;
+            animation: bounceInDown 0.6s forwards;
+        }
+        .animated {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        @keyframes bounceInDown{
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(-2000px);
+                -ms-transform: translateY(-2000px);
+                transform: translateY(-2000px);
+            }
+            60% {
+                opacity: 1;
+                -webkit-transform: translateY(30px);
+                -ms-transform: translateY(30px);
+                transform: translateY(30px);
+            }
+            80% {
+                -webkit-transform: translateY(-10px);
+                -ms-transform: translateY(-10px);
+                transform: translateY(-10px);
+            }
+            100% {
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+                transform: translateY(0);
+            }
+        }
+
         /* 媒体查询，针对移动端屏幕 */
         @media screen and (max-width: 600px) {
             .app-icon img {
@@ -63,6 +130,11 @@
                 padding: 15px 0;
                 font-size: 12px;
             }
+            .tags li {
+                font-size: 12px;
+                padding: 3px 7px;
+                margin: 3px;
+            }
         }
 
     </style>
@@ -70,6 +142,20 @@
         function showComingSoon() {
             alert('敬请期待');
         }
+        // 检测用户代理字符串，判断是否在微信或QQ浏览器内
+        function checkBrowser() {
+            var ua = navigator.userAgent.toLowerCase();
+            var isWeixin = ua.indexOf('micromessenger') !== -1;
+            var isQQ = ua.indexOf('qq/') !== -1;
+            if (isWeixin || isQQ) {
+                document.getElementById('browserOverlay').style.display = 'block';
+            }
+        }
+
+        window.onload = function() {
+            checkBrowser();
+        };
+
     </script>
 
 </head>
@@ -80,12 +166,24 @@
     <div class="app-icon">
         <img src="info.suiyuan.nijiplay.png" alt="App Icon"> <!-- 替换为您的app图标链接 -->
     </div>
+    <ul class="tags">
+        <li>萌猫公园</li>
+        <li>炸弹猫</li>
+        <li>萌猫杀</li>
+        <li>谁是卧底</li>
+        <li>二次元</li>
+    </ul>
     <div class="download-links">
-        <a href="https://nijiplay.net/nijiplay/Nijiplay2024010401.apk">Android下载</a>
+        <a href="https://cdn.nijiplay.net/nijiplay/Nijiplay2024020801.apk">Android下载</a>
         <a href="#" onclick="showComingSoon()">iOS下载</a> 
     </div>
     <div class="footer">
     <a href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2023013616号</a>
     </div>
+    <div id="browserOverlay" class="wechat_tips animated bounceInDown" onclick="this.style.display='none';">
+        <span>点击右上角按钮，然后在弹出的菜单中，点击【在浏览器中打开】，即可安装</span>
+        <img class="arrow" src="alert-arrow.png">
+    </div>
+    
 </body>
 </html>
