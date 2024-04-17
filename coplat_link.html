@@ -154,8 +154,25 @@
 
         window.onload = function() {
             checkBrowser();
-            window.location = 'coplat://play?param=value';
         };
+
+document.addEventListener('DOMContentLoaded', function () {
+    var androidLink = document.getElementById('android-link');
+    var mobileLink = 'coplat://play?param=value';
+    var fallbackLink = 'https://play.google.com/store/apps/details?id=info.suiyuan.coplat';
+
+    var isAndroid = /Android/i.test(navigator.userAgent);
+    if (isAndroid) {
+        /*setTimeout(function() {
+            window.location = fallbackLink; // Fallback to Google Play after 1 second
+        }, 1000);*/
+
+        window.location = mobileLink; // Try to open the deep link
+    } else {
+        androidLink.href = fallbackLink;
+    }
+});
+
 
     </script>
 
@@ -168,15 +185,15 @@
         <img src="info.suiyuan.nijiplay.png" alt="App Icon"> <!-- 替換為您的app圖標鏈接 -->
     </div>
     <ul class="tags">
-        <li>萌貓公園</li>
+        <li>萌貓派對</li>
         <li>炸彈貓</li>
         <li>萌貓殺</li>
         <li>誰是臥底</li>
         <li>二次元</li>
     </ul>
     <div class="download-links">
-        <a href="https://play.google.com/store/apps/details?id=info.suiyuan.coplat">Android下載</a>
-        <a href="#" onclick="showComingSoon()">iOS下載</a> 
+        <a id = 'android-link' href="#">Android下載</a>
+        <a id = 'iOS-link' href="#" onclick="showComingSoon()">iOS下載</a> 
     </div>
     <div class="footer">
     </div>
