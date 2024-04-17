@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+window.onload = function() {
+    var isAppInstalled = false;
+    setTimeout(function() {
+        if (!isAppInstalled) {
+            window.location = 'https://play.google.com/store/apps/details?id=info.suiyuan.coplat';
+        }
+    }, 1000);
+
+    window.location = 'coplat://play?param=value';
+    isAppInstalled = true;
+};
+</script>
+
+</head>
+</html>
