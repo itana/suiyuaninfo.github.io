@@ -157,19 +157,24 @@
         };
 
 document.addEventListener('DOMContentLoaded', function () {
+    const currentUrl = window.location.href;
+    const url = new URL(currentUrl);
+    const queryString = url.search;
+
     var androidLink = document.getElementById('android-link');
-    var mobileLink = 'coplat://play?param=value';
-    var fallbackLink = 'https://play.google.com/store/apps/details?id=info.suiyuan.coplat';
+    var mobileLink = 'coplat://play' + queryString;
+    var googlePlayLink = 'https://play.google.com/store/apps/details?id=info.suiyuan.coplat';
 
     var isAndroid = /Android/i.test(navigator.userAgent);
     if (isAndroid) {
+        androidLink.href = googlePlayLink;
         /*setTimeout(function() {
             window.location = fallbackLink; // Fallback to Google Play after 1 second
         }, 1000);*/
 
         window.location = mobileLink; // Try to open the deep link
     } else {
-        androidLink.href = fallbackLink;
+        
     }
 });
 
