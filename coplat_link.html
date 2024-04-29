@@ -162,10 +162,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const queryString = url.search;
 
     var androidLink = document.getElementById('android-link');
+    var iOSLink = document.getElementById('iOS-link');
+
     var mobileLink = 'coplat://play' + queryString;
     var googlePlayLink = 'https://play.google.com/store/apps/details?id=info.suiyuan.coplat';
 
     var isAndroid = /Android/i.test(navigator.userAgent);
+    var isIOS = /iPhone|iPad/i.test(navigator.userAgent);
+
     if (isAndroid) {
         androidLink.href = googlePlayLink;
         /*setTimeout(function() {
@@ -173,8 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 1000);*/
 
         window.location = mobileLink; // Try to open the deep link
-    } else {
-        
+    } else if (isIOS) {
+      window.location = mobileLink; 
     }
 });
 
