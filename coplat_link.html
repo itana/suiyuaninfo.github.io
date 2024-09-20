@@ -166,12 +166,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var mobileLink = 'coplat://play' + queryString;
     var googlePlayLink = 'https://play.google.com/store/apps/details?id=info.suiyuan.coplat';
+    var iOSAppStoreLink = 'https://apps.apple.com/tw/app/%E8%90%8C%E8%B2%93%E6%B4%BE%E5%B0%8D/id6496130336';
 
     var isAndroid = /Android/i.test(navigator.userAgent);
     var isIOS = /iPhone|iPad/i.test(navigator.userAgent);
 
+    androidLink.href = googlePlayLink;
+    iOSLink.href = iOSAppStoreLink;
+
     if (isAndroid) {
-        androidLink.href = googlePlayLink;
         /*setTimeout(function() {
             window.location = fallbackLink; // Fallback to Google Play after 1 second
         }, 1000);*/
@@ -195,14 +198,14 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
     <ul class="tags">
         <li>萌貓派對</li>
-        <li>炸彈貓</li>
-        <li>萌貓殺</li>
-        <li>誰是臥底</li>
+        <li>太空狼人殺</li>
+        <li>紅藍世界</li>
+        <li>分手廚房</li>
         <li>二次元</li>
     </ul>
     <div class="download-links">
         <a id = 'android-link' href="#">Android下載</a>
-        <a id = 'iOS-link' href="#" onclick="showComingSoon()">iOS下載</a> 
+        <a id = 'iOS-link' href="#">iOS下載</a> 
     </div>
     <div class="footer">
     </div>
