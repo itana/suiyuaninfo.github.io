@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>萌猫派对</title>
+    <style>
+        body {
+            text-align: center;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+        }
+        .app-icon {
+            margin-top: 50px;
+        }
+        .app-icon img {
+            width: 150px;
+            height: auto;
+            border-radius: 20px;
+        }
+        .download-links {
+            margin-top: 30px;
+        }
+        .download-links a {
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px;
+        }
+        .download-links a:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            background-color: #f2f2f2;
+            color: #666;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+        .tags {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+        .tags li {
+            display: inline-block;
+            background-color: #FFA07A; /* 調整tag顏色 */
+            color: white;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .wechat_tips{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: rgba(44,34,39,0.9);
+            padding:20px 50px 20px 30px;
+            min-height: 50px;
+            color: #fff;
+            display: none;
+        }
+        .wechat_tips .arrow{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+        }
+        .bounceInDown {
+            -webkit-animation-name: bounceInDown;
+            animation-name: bounceInDown;
+            -webkit-animation: bounceInDown 0.6s forwards;
+            animation: bounceInDown 0.6s forwards;
+        }
+        .animated {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        @keyframes bounceInDown{
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(-2000px);
+                -ms-transform: translateY(-2000px);
+                transform: translateY(-2000px);
+            }
+            60% {
+                opacity: 1;
+                -webkit-transform: translateY(30px);
+                -ms-transform: translateY(30px);
+                transform: translateY(30px);
+            }
+            80% {
+                -webkit-transform: translateY(-10px);
+                -ms-transform: translateY(-10px);
+                transform: translateY(-10px);
+            }
+            100% {
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+                transform: translateY(0);
+            }
+        }
+
+        /* 媒體查詢，針對移動端屏幕 */
+        @media screen and (max-width: 600px) {
+            .app-icon img {
+                width: 100px; /* 在小屏幕上縮小圖標尺寸 */
+            }
+            .download-links a {
+                padding: 8px 15px; /* 調整按鈕大小以適應小屏幕 */
+            }
+            .footer {
+                padding: 15px 0;
+                font-size: 12px;
+            }
+            .tags li {
+                font-size: 12px;
+                padding: 3px 7px;
+                margin: 3px;
+            }
+        }
+
+    </style>
+    <script>
+        function showComingSoon() {
+            alert('敬請期待');
+        }
+        // 檢測用戶代理字符串，判斷是否在微信或QQ瀏覽器內
+        function checkBrowser() {
+            var ua = navigator.userAgent.toLowerCase();
+            var isWeixin = ua.indexOf('micromessenger') !== -1;
+            var isQQ = ua.indexOf('qq/') !== -1;
+            if (isWeixin || isQQ) {
+                document.getElementById('browserOverlay').style.display = 'block';
+            }
+        }
+
+        window.onload = function() {
+            // checkBrowser();
+        };
+
+document.addEventListener('DOMContentLoaded', function () {
+    const currentUrl = window.location.href;
+    const url = new URL(currentUrl);
+    const queryString = url.search;
+
+    var wechatLink = document.getElementById('wechat-link');
+
+    var mobileLink = 'coplat://play' + queryString;
+    var googlePlayLink = 'https://play.google.com/store/apps/details?id=info.suiyuan.coplat';
+    var iOSAppStoreLink = 'https://apps.apple.com/tw/app/%E8%90%8C%E8%B2%93%E6%B4%BE%E5%B0%8D/id6496130336';
+    var wechatSchemeLink = 'weixin://dl/business/?appid=wx18fceb3389080612&path=/';
+
+
+
+    var isAndroid = /Android/i.test(navigator.userAgent);
+    var isIOS = /iPhone|iPad/i.test(navigator.userAgent);
+
+    // androidLink.href = googlePlayLink;
+    // iOSLink.href = iOSAppStoreLink;
+   wechatLink.href = wechatSchemeLink;
+
+    if (! queryString)
+        return;
+
+    if (isAndroid) {
+        // window.location = mobileLink; // Try to open the deep link
+    } else if (isIOS) {
+      // window.location = mobileLink; 
+    }
+});
+
+
+    </script>
+
+</head>
+<body>
+    <div class="header">
+        <h1>萌猫派对</h1>
+    </div>
+    <div class="app-icon">
+        <img src="info.suiyuan.coplat.png" alt="App Icon"> <!-- 替換為您的app圖標鏈接 -->
+    </div>
+    <ul class="tags">
+        <li>萌猫派对</li>
+        <li>太空狼人杀</li>
+        <li>红蓝世界</li>
+        <li>分手厨房</li>
+        <li>二次元</li>
+    </ul>
+    <div class="download-links">
+       <a id = 'wechat-link' href="#">微信小游戏</a>
+    </div>
+    <div class="footer">
+    <a href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2023013616号</a><br/>
+   Copyright © 2012-2025 All Rights Reserved.虽远科技 版权所有
+    </div>
+    <div id="browserOverlay" class="wechat_tips animated bounceInDown" onclick="this.style.display='none';">
+        <span>点击右上角按钮，然后在弹出的菜单中，点击【在浏览器中打开】，即可安装</span>
+        <img class="arrow" src="alert-arrow.png">
+    </div>
+    
+</body>
+</html>
